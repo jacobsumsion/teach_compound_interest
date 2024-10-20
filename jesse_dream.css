@@ -1,0 +1,643 @@
+/* jesse_dream.css */
+
+header {
+    position: fixed;
+    top: 0px;
+    padding: 5px;
+    width: 100%;
+    z-index: 100;
+    background-color: #6EC1E4;
+    transition: top 0.3s; /* Smooth transition when the header hides/shows */
+}
+
+/* Style for Chapter Select label */
+.chapter-label {
+    font-size: 18px;         /* Adjust font size */
+    color: white;            /* Text color */
+    font-weight: bold;       /* Make the text bold */
+    text-transform: uppercase; /* Make the text uppercase */
+    letter-spacing: 1px;     /* Add some spacing between letters */
+    text-align: center;      /* Center the text */
+    margin-bottom: 0px;     /* Space between the label and the dots */
+}
+
+.hidden-header {
+    top: -100px; /* Adjust based on your header height */
+}
+
+/* Adjust #dot-nav to stack the label and horizontally align the dots */
+#dot-nav {
+    display: flex;
+    flex-direction: column;   /* Stack the label and dot container vertically */
+    align-items: center;      /* Center the label and dot container horizontally */
+    padding: 10px;
+    background-color: #6EC1E4;
+}
+
+/* Add a container for the dots */
+.dots-container {
+    display: flex;            /* Align dots horizontally */
+    justify-content: center;  /* Center the dots in the container */
+    margin-top: 10px;         /* Add some spacing between label and dots */
+}
+
+.dot {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: #fff;
+    margin: 0 10px;           /* Add space between dots */
+    position: relative;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.dot:hover {
+    background-color: #F9A825;
+}
+
+/* Tooltip styles */
+.dot::after {
+    content: attr(title);
+    position: absolute;
+    bottom: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease;
+    font-size: 12px;
+}
+
+.dot:hover::after {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Active dot */
+.active-dot {
+    background-color: #F9A825;
+}
+
+/* Ensure each section takes up the full viewport */
+section {
+    position: absolute;  /* Stack sections on top of each other */
+    padding-top: 40px;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: none;  /* Hide all sections initially */
+}
+
+/* Hide the inactive sections */
+.hidden {
+    opacity: 0;
+    z-index: 0;  /* Send hidden sections behind the active one */
+    transition: opacity 0.5s ease-in-out;
+}
+
+.active {
+    display: block;
+    opacity: 1;
+    z-index: 1;  /* Ensure active section is on top */
+    transition: opacity 0.5s ease-in-out;
+}
+
+/* Ensure main-content takes up the full height */
+#main-content {
+    position: relative;
+    height: 100vh; /* Full height of the viewport */
+}
+
+/* Style your individual sections (e.g., hero section, Meet Jesse) accordingly */
+#hero, #meet-jesse, #savings-plan, #jesse-investing, #compound-interest, #watch-money-grow, #review, #growth-chart {
+    background-color: wheat; /* General background for sections */
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 100vh;
+    padding: 0%;
+    position: relative;  
+    max-width: 800px;        /* Limit the width of the container */
+    margin: 0 auto;           /* Center the container in wide screens */
+    box-sizing: border-box;
+}
+
+.speech-bubble {
+    font-size: 20px;
+    padding: 15px;
+    position: absolute;  /* Absolute position relative to container */
+    top: 10px; 
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+}
+
+button {
+    padding: 12px 25px;
+    font-size: 18px;
+    background-color: #F9A825;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    margin-top: 0px;
+    margin-bottom: 40px;
+    z-index: 4;
+}
+
+button:hover {
+    background-color: #FFC107; /* Slightly change background color */
+    transform: translateY(-2px); /* Pop-out effect */
+}
+
+img {
+    max-width: 80%;
+    height: auto;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 0;
+    margin-bottom: -10px;
+    position: relative;
+}
+
+@media screen and (max-width: 600px) {
+    .speech-bubble {
+        font-size: 16px;
+        padding: 10px;
+    }
+
+    img {
+        max-width: 80%;
+    }
+
+    button {
+        font-size: 16px;
+        padding: 8px 16px;
+    }
+}
+
+/* Target the buttons when input-savings is visible */
+#savings-plan.input-savings-active button {
+    position: absolute;
+    top: 75%;  /* Adjust this as needed to move the button below the input fields */
+    left: 50%;
+    transform: translate(-50%, 0);
+    z-index: 4;
+}
+
+/* Input group styling, overlaying the image */
+.input-group {
+    font-size: 20px;
+    padding: 15px;
+    position: absolute;  /* Absolute position */
+    top: 50%;  /* Vertically align to the middle of the container */
+    left: 50%;  /* Horizontally center within the container */
+    transform: translate(-50%, -50%);  /* Ensure the input group is perfectly centered */
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.3);  /* More pronounced shadow */
+    z-index: 3;  /* Ensure the input-group is above the image */
+    width: 80%;  /* Set width of the input-group */
+    max-width: 400px;  /* Limit the maximum width */
+    box-sizing: border-box;
+}
+
+/* Input group label */
+.input-group label {
+    font-size: 18px;
+    display: block;
+    margin-bottom: 10px;
+}
+
+/* Input group input field */
+.input-group input {
+    padding: 10px;
+    font-size: 18px;
+    width: calc(100% - 20px);  /* Full-width inputs with padding */
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+/* Visibility classes for the child elements of hidden*/
+.input-group-hidden {
+    display: none !important;
+}
+
+.input-group-visible {
+    display: block;
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+}
+
+/* Apply specific flexbox styling for Section 5 only */
+#moneyball-inputs.input-group-visible {
+    display: flex; /* Use flexbox specifically for Section 5 */
+    justify-content: space-between; /* Space inputs horizontally */
+    align-items: center;
+}
+
+#moneyball-inputs {
+    display: flex;
+    justify-content: space-between;  /* Space between inputs */
+    align-items: center;             /* Vertically align the inputs */
+    width: 100%;
+    max-width: 800px;                /* Limit maximum width */
+    flex-direction: row;             /* Align the inputs horizontally */
+}
+
+.moneyball-input-group {
+    margin: 0 10px;  /* Space between inputs */
+    text-align: left; /* Align input labels and inputs to the left */
+    flex: 1;          /* Ensure input fields are evenly distributed */
+}
+
+/* Hero section background */
+#hero {
+    background-image: url('images/money_magic.webp');
+    background-size: cover;
+    background-position: center;
+    z-index: 10;
+    color: #ffffff; /* Ensure text is bright and visible on a dark background */
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7); /* Add shadow to text for contrast */
+}
+
+/* Styling the main hero content */
+.hero-content {
+    background-color: rgba(0, 0, 0, 0.7); /* Darken background for better text contrast */
+    border-radius: 15px;
+    padding: 40px;
+    color: #f9f9f9; /* Lighter text for readability */
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Stronger shadow for depth */
+    transition: all 0.3s ease-in-out;
+    transform: scale(1); /* Animation base state */
+}
+
+/* Enlarge hero heading and make it more prominent */
+.hero-content h1 {
+    font-size: 48px; /* Larger, bolder font for the hero message */
+    font-weight: 700;
+    margin-bottom: 20px;
+    letter-spacing: 2px; /* Add space between letters for clarity */
+}
+
+/* Paragraph text in hero section */
+.hero-content p {
+    font-size: 22px; /* Increase text size for readability */
+    margin-bottom: 20px;
+}
+
+/* List items in the hero section */
+.hero-content ul {
+    list-style-type: none;
+    padding: 0;
+    font-size: 24px;
+}
+
+.hero-content ul li {
+    margin: 10px 0;
+    text-transform: uppercase; /* Add emphasis with uppercase text */
+}
+
+/* Hero button styling */
+.hero-button {
+    padding: 15px 40px;
+    font-size: 22px;
+    background-color: #F9A825; /* Bright and bold button color */
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* More pronounced button shadow */
+}
+
+.hero-button:hover {
+    background-color: #FFC107; /* Lighter hover state */
+    transform: scale(1.05); /* Button grows slightly when hovered */
+}
+
+/* Hero content styling for positioning */
+.hero-content {
+    animation: fadeInUp 1.5s ease-in-out;
+    position: relative; /* Ensure bubble is positioned relative to the content */
+    margin: 0 auto;
+    padding: 40px;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 15px;
+    max-width: 800px;
+    color: #f9f9f9;
+    text-align: center;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px); /* Start slightly offscreen */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0); /* End in place */
+    }
+}
+
+/* Circular Bubble Styling */
+#cloud-bubble {
+    position: absolute;
+    top: 70px; /* Positioned just below the text content */
+    right: 20px; /* Aligned near the right edge */
+    background-color: #F9A825; /* Matches the button color */
+    color: white; /* White text for contrast */
+    padding: 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 50%; /* Perfect circle shape */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Add some depth with a shadow */
+    transform: rotate(5deg); /* Slight rotation for a playful look */
+    animation: bounce 2s infinite ease-in-out;
+    z-index: 100; /* Ensure it's on top */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+/* Slight bounce animation */
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0) rotate(5deg); /* Keep rotation during bounce */
+    }
+    50% {
+        transform: translateY(-10px) rotate(5deg); /* Slight upward bounce */
+    }
+}
+
+/* second hidden class for child elements of hidden objects */
+.invisible {
+    display: none;
+}
+
+.visible {
+    display: block;
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+}
+
+strong {
+    font-size: 24px;
+    color: #F9A825; /* Yellow color for emphasis */
+}
+
+.output span {
+    display: inline-block;
+    transition: transform 0.5s ease-in-out; /* Smooth transition */
+}
+
+.output span.animate {
+    transform: scale(1.4);
+    color: #F9A825; /* Make it pop with a bright yellow color */
+    overflow: visible;
+}
+
+/* CSS for highlighting the compound interest formula */
+#s4-formula-bubble {
+    position: absolute;  /* Position it absolutely within the container */
+    top: 22%;  /* Adjust this to position it near the top */
+    left: 19%;  /* Adjust this to place it in the left quartile */
+    font-size: 24px;
+    color: #F9A825;  /* Highlight color */
+    background-color: rgba(255, 255, 255, 0.9);  /* Add a semi-transparent background */
+    padding: 10px;
+    border-radius: 10px;  /* Add some rounding to the bubble */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);  /* Add a shadow for depth */
+    z-index: 3;  /* Ensure it's above the image */
+    animation: pop-in 1s ease-in-out;  /* Keep the pop-in animation */
+}
+
+/* Animation for the formula bubble */
+@keyframes pop-in {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* CSS for highlighting important words */
+.highlight {
+    font-size: 24px;
+    color: #F9A825; /* Same color used in section 3 for emphasis */
+    animation: pop-in 1s ease-in-out; /* Optional: Add an animation for extra emphasis */
+}
+
+/* CSS for highlighting parts of the formula */
+.highlight-p {
+    color: #FF5733; /* Bright orange for P */
+    font-size: 28px;
+    font-weight: bold;
+    transition: transform 0.3s ease-in-out;
+    transform: scale(1.8);
+}
+
+.highlight-r {
+    color: #33C1FF; /* Bright blue for r */
+    font-size: 28px;
+    font-weight: bold;
+    transition: transform 0.3s ease-in-out;
+    transform: scale(1.8);
+}
+
+.highlight-t {
+    color: #57bc29; /* Bright green for t */
+    font-size: 28px;
+    font-weight: bold;
+    transition: transform 0.3s ease-in-out;
+    transform: scale(1.9);
+}
+
+.highlight-a {
+    color: #ff33e7; /* Bright pink for a */
+    font-size: 28px;
+    font-weight: bold;
+    transition: transform 0.3s ease-in-out;
+    transform: scale(1.8);
+}
+
+/* Adjust the individual input groups */
+.moneyball-input-group {
+    background-color: #fff;  /* Keep the white background */
+    border-radius: 15px;     /* Keep the rounded corners */
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.3);  /* Keep the shadow */
+    padding: 10px;           /* Reduced padding for a more balanced look */
+    margin: 10px 0;          /* Keep the spacing between input groups */
+    width: 70%;              /* Reduce the width to about 70% of the original */
+    max-width: 300px;        /* Limit maximum width for smaller screens */
+    margin: 0px 15px;       /* Adds horizontal spacing between the input groups */
+}
+
+/* Style the actual input fields inside the moneyball-input-group */
+.moneyball-input-group input {
+    width: 90%;              /* Make the input field slightly smaller than the container */
+    padding: 8px;            /* Slightly reduce the padding inside the inputs */
+    border: 1px solid #ccc;  /* Keep the light border */
+    border-radius: 10px;     /* Keep the rounded corners */
+    box-shadow: inset 0px 2px 5px rgba(0, 0, 0, 0.1);  /* Keep the subtle inner shadow */
+    font-size: 16px;         /* Reduce font size for a cleaner look */
+    margin-bottom: 5px;      /* Add some spacing inside the input box */
+    box-sizing: border-box;  /* Ensure padding and borders don't overflow the container */
+}
+
+/* Inputs and animation are centered and spaced */
+#moneyball-inputs {
+    display: flex;
+    justify-content: space-between;  /* Horizontal alignment */
+    align-items: center;             /* Vertical alignment */
+    width: 100%;
+    max-width: 800px;                /* Limit maximum width */
+    margin-top: 5%;
+}
+
+#moneyball-container {
+    margin: 20px 0;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* The moneyball */
+#moneyball {
+    position: absolute;
+    width: 40px; /* Initial size, but will grow indefinitely */
+    height: 40px;
+    background-color: #FFD700;
+    border-radius: 50%;
+    background-image: url('images/money_texture.png');
+    background-size: cover;
+    transition: transform 0.5s ease-in-out;
+    animation: none; /* No animation initially */
+    z-index: 10;
+    
+    /* No max-size restrictions, allow the ball to grow beyond container */
+}
+
+/* New class to style the moneyball inputs like the speech-bubbles */
+.moneyball-bubble {
+    background-color: #fff; /* Same as speech-bubble */
+    border-radius: 15px; /* Same rounded corners */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Similar shadow effect */
+    padding: 15px; /* Padding like speech-bubbles */
+    max-width: 800px; /* To ensure consistent width */
+    margin: 20px auto; /* Center it horizontally */
+    position: relative; /* Ensure it stays in the right position */
+    z-index: 2; /* Keep it on top, like the speech-bubble */
+}
+
+#push-moneyball-button {
+    margin-top: 5px;
+    margin-bottom: -10px;
+    align-self: center;
+}
+
+.force-down {
+    position: absolute;
+    bottom: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 5;
+}
+
+.force-down:hover {
+    transform: translateX(-50%) translateY(-2px); /* Keep the centering intact, but add the hover animation */
+}
+
+/* Moneyball animation */
+@keyframes rollDown {
+    0% { transform: translate(0, 0) scale(1); }
+    25% { transform: translate(20%, 20%) scale(1.2); }
+    50% { transform: translate(50%, 50%) scale(1.5); }
+    75% { transform: translate(70%, 80%) scale(2); }
+    100% { transform: translate(100%, 100%) scale(2.5); }
+}
+
+.chart-input-group {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 600px;
+    margin: 20px auto;
+}
+
+.chart-input-group {
+    font-size: 16px;
+    margin-right: 10px;
+}
+
+.chart-input-group {
+    padding: 10px;
+    font-size: 18px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    width: 30%;
+    margin-right: 10px;
+}
+
+
+canvas {
+    margin-left: -20px; /* Shift the chart to the left by 20px */
+    width: 100%; /* Ensure the chart spans the full width */
+    height: auto; /* Maintain aspect ratio */
+}
+
+#chart-inputs {
+    position: absolute;
+    top: 28%; 
+    left: 14%; 
+    z-index: 10; /* Keep it above the chart */
+    background-color: rgba(255, 255, 255, 0.8); /* Keep the background */
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Adds vertical space between the rows */
+}
+
+#chart-inputs .input-row {
+    display: flex;
+    align-items: center; /* Center align the label and input vertically */
+    gap: 10px; /* Space between the label and the input */
+}
+
+#chart-inputs label {
+    font-size: 14px;
+    margin-right: 0; /* Remove any extra margin */
+}
+
+#chart-inputs input {
+    width: 100px; /* Adjust the width to be slightly wider for better readability */
+    font-size: 14px;
+    padding: 5px;
+}

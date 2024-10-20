@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jesse's Big Dream</title>
+    <!-- Link to External CSS -->
+    <link rel="stylesheet" href="jesse_dream.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+<body>
+
+    <header>
+        <nav id="dot-nav">
+            <div class="chapter-label">Chapter Select</div>
+            <div class="dots-container">
+                <div class="dot" data-section="hero" title="Hero"></div>
+                <div class="dot" data-section="meet-jesse" title="Meet Jesse"></div>
+                <div class="dot" data-section="savings-plan" title="Savings Plan"></div>
+                <div class="dot" data-section="jesse-investing" title="Investing"></div>
+                <div class="dot" data-section="compound-interest" title="Compound Interest"></div>
+                <div class="dot" data-section="watch-money-grow" title="Moneyball!"></div>
+                <div class="dot" data-section="review" title="Review"></div>
+                <div class="dot" data-section="growth-chart" title="Growth Chart"></div>
+            </div>
+        </nav>
+    </header>    
+
+    <!-- Main content area where sections change dynamically -->
+    <div id="main-content">
+
+        <!-- Hero section where we start the story -->
+        <section id="hero" class="active">
+            <div class="hero-content">
+                <h1>Investing is like real magic.</h1>
+                <p>In this adventure, you will learn the magic of...</p>
+                <ul>
+                    <li>hard work</li>
+                    <li>saving</li>
+                    <li>investing</li>
+                    <li>Compound Interest</li>
+                </ul>
+                <button id="start-button" class="hero-button" type="button">Start the Adventure!</button>
+            </div>
+
+            <!-- Star Bubble for 'Great for All Ages' -->
+            <div id="cloud-bubble">
+                <span>Great for All Ages!</span>
+            </div>
+        </section>
+
+        <!-- Section 1: Meet Jesse -->
+        <section id="meet-jesse" class="hidden">
+            <div class="container">
+                <div class="speech-bubble" id="speech-bubble-1"></div>
+                <img id="jesse-image-1" src="" alt="Jesse says hello" />
+                <button id="next-text-button-1"></button>
+            </div>
+        </section>
+            
+        <section id="savings-plan" class="hidden">
+            <div class="container">
+                <div class="speech-bubble" id="speech-bubble-2"></div>
+                <img id="jesse-image-2" src="" alt="Jesse thinking about a car" />
+                <button id="next-text-button-2"></button>
+            </div>
+        
+            <!-- Input field for saving amount, hidden initially -->
+            <div class="input-group input-group-hidden" id="savings-input">
+                <label for="weekly-savings">Saved each <strong>week</strong> ($):</label>
+                <input type="number" id="weekly-savings" min="1" placeholder="Enter dollar amount" />
+                
+                <!-- Savings Output display-->
+                <div class="output">
+                    <p>Will save per <strong>year</strong>: $   <span id="yearly-result">0</span></p>
+                </div>
+            </div>
+        </section>
+        
+        
+        <!-- Section 3: Jesse Explains Investing -->
+        <section id="jesse-investing" class="hidden">
+            <div class="container">
+                <div class="speech-bubble" id="speech-bubble-3"></div>
+                <img id="jesse-image-3" src="" alt="Jesse Explains Investing" />
+                <button id="next-text-button-3"></button>
+            </div>
+        </section>
+
+        <!-- Section 4: The Magic of Compound Interest -->
+        <section id="compound-interest" class="hidden">
+            <div class="container">
+                <div class="speech-bubble" class="hidden" id="s4-formula-bubble">
+                    <p><strong>A = P(1 + r)<sup>t</sup></strong></p>
+                </div>
+                <div class="speech-bubble" id="speech-bubble-4"></div>
+                <img id="jesse-image-4" src="" alt="Jesse teaching" />
+                <button id="next-text-button-4"></button>
+            </div>
+        </section>
+
+        <!-- Section 5: Watch the Moneyball -->
+        <section id="watch-money-grow" class="hidden">
+            <div class="container">
+                <div class="speech-bubble" id="speech-bubble-5"></div>
+                <img id="jesse-image-5" src="images/jesse_celebrate.webp" alt="Jesse Celebrates">
+                <button id="next-text-button-5"></button>
+                <div id="moneyball-inputs" class="input-group-hidden">
+                    <div class="moneyball-input-group">
+                        <label for="principal">P (Starting Money):</label>
+                        <input type="number" id="principal" min="1" placeholder="starting money" value="520">
+                    </div>
+                    <div class="moneyball-input-group">
+                        <label for="rate">r (How fast it grows):</label>
+                        <input type="number" id="rate" step="0.01" min="0" max="1" placeholder="Growth rate" value=".1">
+                    </div>
+                    <div class="moneyball-input-group">
+                        <label for="time">t (Time in Years):</label>
+                        <input type="number" id="time" min="1" placeholder="time"
+                        value="25">
+                    </div>
+                </div>
+                <div id="moneyball-container" class="hidden">
+                    <div id="moneyball"></div> <!-- The moneyball animation goes here -->
+                </div>
+                <button id="push-moneyball-button" class="input-group-hidden">Push the Moneyball!!</button>
+                <div id="compound-output" class="input-group-hidden output">
+                    <p>The calculated final amount would be: <strong>$<span id="final-amount">0.00</span></strong></p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Section 6: Review -->
+        <section id="review" class="hidden">
+            <div class="container">
+                <div class="speech-bubble" id="speech-bubble-6"></div>
+                <img id="jesse-image-6" src="" alt="review Image">
+                <button id="next-text-button-6"></button>
+                </p>
+            </div>
+        </section>
+
+        <!-- Section 7: Growth Chart -->
+        <section id="growth-chart" class="hidden">
+            <div class="container">
+                <div class="speech-bubble" id="speech-bubble-7"></div>
+                <canvas id="compound-interest-chart" class="hidden" width="600" height="400"></canvas>
+                <div id="chart-inputs">
+                    <div class="input-row">
+                        <label for="principal-chart">P:</label>
+                        <input type="number" id="principal-chart" min="1" placeholder="Starting money">
+                    </div>
+                
+                    <div class="input-row">
+                        <label for="rate-chart">r:</label>
+                        <input type="number" id="rate-chart" step="0.01" min="0" max="1" placeholder="rate" value="0.1">
+                    </div>
+                
+                    <div class="input-row">
+                        <label for="time-chart">t:</label>
+                        <input type="number" id="time-chart" min="1" placeholder="time in years">
+                    </div>
+                </div>
+                <button id="next-text-button-7"></button>
+            </div>
+        </section>
+
+    <!-- Link to External JavaScript -->
+    <script src="jesse_dream.js"></script>
+
+</body>
+</html>
