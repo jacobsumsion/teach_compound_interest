@@ -177,7 +177,7 @@ const sectionsContent = {
             "I want to buy an actual, real-life, super cool - <strong>CAR</strong>!",
             "Cars are expensive, but I heard that there is a <strong>magic spell</strong> that can help me out. Do you want to learn the magic?"
         ],
-        images: ["images/jesse_hello.webp", "images/jesse_bugatti.webp", "images/jesse_asks.webp"],
+        images: ["images/jesse_hello.webp", "images/jesse_car.webp", "images/jesse_asks.webp"],
         buttonText: ["Please tell me!", "Wow!", "Yes, I want to Learn" ],
         nextSection: "savings-plan"
     },
